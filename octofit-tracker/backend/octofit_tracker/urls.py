@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import UserViewSet, TeamViewSet, ActivityViewSet, LeaderboardViewSet, WorkoutViewSet, api_root
+import os
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -25,8 +26,17 @@ router.register(r'activities', ActivityViewSet)
 router.register(r'leaderboard', LeaderboardViewSet)
 router.register(r'workouts', WorkoutViewSet)
 
+def custom_api_root(request, format=None):
+    codespace_name = os.environ.get('CODESPACE_NAME', '')
+    base_url = request.build_absolute_uri('/')
+    if codespace_name:
+        base_url = f'https://{codespace_name}-8000.app.github.dev/api/'
+    else:
+        base_url = request.build_absolute_uri('/api/')
+    return api_root(request)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', api_root, name='api_root'),
-    path('', include(router.urls)),
+    path('', custom_api_root, name='api_root'),
+    path('api/', include(router.urls)),
 ]
