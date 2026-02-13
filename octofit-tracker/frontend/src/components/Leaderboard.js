@@ -24,16 +24,35 @@ export default function Leaderboard() {
 
   return (
     <div className="container mt-3">
-      <h3>Leaderboard</h3>
-      <ul className="list-group">
-        {data && data.length ? (
-          data.map((t, i) => (
-            <li className="list-group-item" key={i}>{t.team}: {t.points}</li>
-          ))
-        ) : (
-          <li className="list-group-item">No leaderboard data</li>
-        )}
-      </ul>
+      <div className="card">
+        <div className="card-body">
+          <h3 className="card-title">Leaderboard</h3>
+          <div className="table-responsive">
+            <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Team</th>
+                  <th>Points</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data && data.length ? (
+                  data.map((t, i) => (
+                    <tr key={i}>
+                      <td>{i + 1}</td>
+                      <td>{t.team}</td>
+                      <td>{t.points}</td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr><td colSpan="3">No leaderboard data</td></tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

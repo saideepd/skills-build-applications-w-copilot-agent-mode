@@ -24,16 +24,35 @@ export default function Teams() {
 
   return (
     <div className="container mt-3">
-      <h3>Teams</h3>
-      <ul className="list-group">
-        {data && data.length ? (
-          data.map((t, i) => (
-            <li className="list-group-item" key={i}>{t.name}: {Array.isArray(t.members) ? t.members.join(', ') : String(t.members)}</li>
-          ))
-        ) : (
-          <li className="list-group-item">No teams</li>
-        )}
-      </ul>
+      <div className="card">
+        <div className="card-body">
+          <h3 className="card-title">Teams</h3>
+          <div className="table-responsive">
+            <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Members</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data && data.length ? (
+                  data.map((t, i) => (
+                    <tr key={i}>
+                      <td>{i + 1}</td>
+                      <td>{t.name}</td>
+                      <td>{Array.isArray(t.members) ? t.members.join(', ') : String(t.members)}</td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr><td colSpan="3">No teams</td></tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

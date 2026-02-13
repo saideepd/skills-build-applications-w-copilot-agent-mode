@@ -24,16 +24,38 @@ export default function Activities() {
 
   return (
     <div className="container mt-3">
-      <h3>Activities</h3>
-      <ul className="list-group">
-        {data && data.length ? (
-          data.map((a, i) => (
-            <li className="list-group-item" key={i}>{a.user || a.name}: {a.activity || JSON.stringify(a)}</li>
-          ))
-        ) : (
-          <li className="list-group-item">No activities</li>
-        )}
-      </ul>
+      <div className="card">
+        <div className="card-body">
+          <h3 className="card-title">Activities</h3>
+          <button className="btn btn-primary mb-3" onClick={() => window.location.reload()}>Refresh</button>
+          <div className="table-responsive">
+            <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>User</th>
+                  <th>Activity</th>
+                  <th>Duration</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data && data.length ? (
+                  data.map((a, i) => (
+                    <tr key={i}>
+                      <td>{i + 1}</td>
+                      <td>{a.user || a.name}</td>
+                      <td>{a.activity || JSON.stringify(a)}</td>
+                      <td>{a.duration || ''}</td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr><td colSpan="4">No activities</td></tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

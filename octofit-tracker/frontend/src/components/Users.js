@@ -24,16 +24,37 @@ export default function Users() {
 
   return (
     <div className="container mt-3">
-      <h3>Users</h3>
-      <ul className="list-group">
-        {data && data.length ? (
-          data.map((u, i) => (
-            <li className="list-group-item" key={i}>{u.name} ({u.email}) - {u.team}</li>
-          ))
-        ) : (
-          <li className="list-group-item">No users</li>
-        )}
-      </ul>
+      <div className="card">
+        <div className="card-body">
+          <h3 className="card-title">Users</h3>
+          <div className="table-responsive">
+            <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Team</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data && data.length ? (
+                  data.map((u, i) => (
+                    <tr key={i}>
+                      <td>{i + 1}</td>
+                      <td>{u.name}</td>
+                      <td>{u.email}</td>
+                      <td>{u.team}</td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr><td colSpan="4">No users</td></tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

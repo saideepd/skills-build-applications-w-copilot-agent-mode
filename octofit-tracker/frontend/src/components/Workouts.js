@@ -24,16 +24,37 @@ export default function Workouts() {
 
   return (
     <div className="container mt-3">
-      <h3>Workouts</h3>
-      <ul className="list-group">
-        {data && data.length ? (
-          data.map((w, i) => (
-            <li className="list-group-item" key={i}>{w.user}: {w.workout} ({w.reps})</li>
-          ))
-        ) : (
-          <li className="list-group-item">No workouts</li>
-        )}
-      </ul>
+      <div className="card">
+        <div className="card-body">
+          <h3 className="card-title">Workouts</h3>
+          <div className="table-responsive">
+            <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>User</th>
+                  <th>Workout</th>
+                  <th>Reps</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data && data.length ? (
+                  data.map((w, i) => (
+                    <tr key={i}>
+                      <td>{i + 1}</td>
+                      <td>{w.user}</td>
+                      <td>{w.workout}</td>
+                      <td>{w.reps}</td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr><td colSpan="4">No workouts</td></tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
