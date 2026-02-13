@@ -13,7 +13,11 @@ def _serialize_queryset_or_fallback(model, serializer_class, collection_name):
     try:
         qs = model.objects.all()
         serializer = serializer_class(qs, many=True)
-        return serializer.data
+        data = serializer.data
+        # If serialization produced items with null/empty ids, fall back to raw pymongo docs
+        if isinstance(data, list) and any((not item.get('id')) for item in data):
+            raise Exception('Serialized data missing ids, fallback to pymongo')
+        return data
     except Exception:
         # Fallback to pymongo
         db = _get_db()
