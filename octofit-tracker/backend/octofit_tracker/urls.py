@@ -16,27 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import UserViewSet, TeamViewSet, ActivityViewSet, LeaderboardViewSet, WorkoutViewSet, api_root
+from .views import api_root, users_list, teams_list, activities_list, leaderboard_list, workouts_list
 import os
-
-router = DefaultRouter()
-router.register(r'users', UserViewSet)
-router.register(r'teams', TeamViewSet)
-router.register(r'activities', ActivityViewSet)
-router.register(r'leaderboard', LeaderboardViewSet)
-router.register(r'workouts', WorkoutViewSet)
-
-def custom_api_root(request, format=None):
-    codespace_name = os.environ.get('CODESPACE_NAME', '')
-    base_url = request.build_absolute_uri('/')
-    if codespace_name:
-        base_url = f'https://{codespace_name}-8000.app.github.dev/api/'
-    else:
-        base_url = request.build_absolute_uri('/api/')
-    return api_root(request)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', custom_api_root, name='api_root'),
-    path('api/', include(router.urls)),
+    path('', api_root, name='api_root'),
+    path('api/users/', users_list, name='users-list'),
+    path('api/teams/', teams_list, name='teams-list'),
+    path('api/activities/', activities_list, name='activities-list'),
+    path('api/leaderboard/', leaderboard_list, name='leaderboard-list'),
+    path('api/workouts/', workouts_list, name='workouts-list'),
 ]
