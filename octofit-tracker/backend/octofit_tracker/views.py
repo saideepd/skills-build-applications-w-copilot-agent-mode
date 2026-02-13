@@ -8,6 +8,19 @@ from bson import ObjectId
 import os
 
 
+def _serialize_queryset_or_fallback(model, serializer_class, collection_name):
+    """Try to fetch via Django ORM and serialize; if that fails, fallback to pymongo collection docs."""
+    try:
+        qs = model.objects.all()
+        serializer = serializer_class(qs, many=True)
+        return serializer.data
+    except Exception:
+        # Fallback to pymongo
+        db = _get_db()
+        docs = list(db[collection_name].find())
+        return [_format_doc(d) for d in docs]
+
+
 def _format_doc(doc):
     if not isinstance(doc, dict):
         return doc
@@ -28,42 +41,32 @@ def _get_db():
 
 @api_view(['GET'])
 def users_list(request):
-    db = _get_db()
-    docs = list(db.users.find())
-    docs = [_format_doc(d) for d in docs]
-    return Response(docs)
+    data = _serialize_queryset_or_fallback(User, UserSerializer, 'users')
+    return Response(data)
 
 
 @api_view(['GET'])
 def teams_list(request):
-    db = _get_db()
-    docs = list(db.teams.find())
-    docs = [_format_doc(d) for d in docs]
-    return Response(docs)
+    data = _serialize_queryset_or_fallback(Team, TeamSerializer, 'teams')
+    return Response(data)
 
 
 @api_view(['GET'])
 def activities_list(request):
-    db = _get_db()
-    docs = list(db.activities.find())
-    docs = [_format_doc(d) for d in docs]
-    return Response(docs)
+    data = _serialize_queryset_or_fallback(Activity, ActivitySerializer, 'activities')
+    return Response(data)
 
 
 @api_view(['GET'])
 def leaderboard_list(request):
-    db = _get_db()
-    docs = list(db.leaderboard.find())
-    docs = [_format_doc(d) for d in docs]
-    return Response(docs)
+    data = _serialize_queryset_or_fallback(Leaderboard, LeaderboardSerializer, 'leaderboard')
+    return Response(data)
 
 
 @api_view(['GET'])
 def workouts_list(request):
-    db = _get_db()
-    docs = list(db.workouts.find())
-    docs = [_format_doc(d) for d in docs]
-    return Response(docs)
+    data = _serialize_queryset_or_fallback(Workout, WorkoutSerializer, 'workouts')
+    return Response(data)
 
 
 @api_view(['GET'])
