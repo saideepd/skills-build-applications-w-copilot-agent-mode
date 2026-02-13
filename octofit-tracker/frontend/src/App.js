@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import logo from './logo.svg';
 import { Routes, Route, NavLink } from 'react-router-dom';
 import Activities from './components/Activities';
 import Users from './components/Users';
@@ -12,7 +13,10 @@ function App() {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <NavLink className="navbar-brand" to="/">OctoFit</NavLink>
+          <NavLink className="navbar-brand d-flex align-items-center" to="/">
+            <img src={logo} alt="OctoFit" className="octo-logo me-2" />
+            <span>OctoFit</span>
+          </NavLink>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>

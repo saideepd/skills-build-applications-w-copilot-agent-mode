@@ -49,3 +49,51 @@ body {
 .container {
   max-width: 960px;
 }
+
+/* Theme colors */
+body {
+  background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+  color: #172554;
+}
+
+.navbar {
+  background: linear-gradient(90deg, #1e293b 0%, #0f172a 100%);
+}
+.navbar .nav-link, .navbar .navbar-brand span {
+  color: #e2e8f0 !important;
+}
+.navbar .nav-link.active {
+  color: #60a5fa !important;
+}
+
+.octo-logo {
+  width: 36px;
+  height: 36px;
+}
+
+.card {
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+}
+
+.table thead th {
+  background: linear-gradient(90deg, #e6eefc 0%, #dbeafe 100%);
+  color: #0f172a;
+}
+
+.btn-primary {
+  background-color: #2563eb;
+  border-color: #2563eb;
+}
+.btn-primary:hover {
+  background-color: #1e40af;
+  border-color: #1e40af;
+}
+
+a {
+  color: #1d4ed8;
+}
+
+h3, h2 {
+  color: #0f172a;
+}
