@@ -1,0 +1,137 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* App layout tweaks */
+body {
+  padding-top: 70px;
+}
+
+.card-title {
+  margin-bottom: 1rem;
+}
+
+.container {
+  max-width: 960px;
+}
+
+/* Theme colors */
+body {
+  background: linear-gradient(135deg, #0f172a 0%, #071130 50%, #0b1220 100%);
+  color: #e6eef8;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+.navbar {
+  background: linear-gradient(90deg, rgba(124,58,237,0.95) 0%, rgba(6,182,212,0.95) 100%);
+  box-shadow: 0 4px 14px rgba(2,6,23,0.45);
+}
+.navbar .nav-link, .navbar .navbar-brand span {
+  color: #f8fafc !important;
+  font-weight: 600;
+}
+.navbar .nav-link.active {
+  color: #fffbeb !important;
+  text-decoration: underline;
+}
+
+.octo-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+}
+.brand-text {
+  margin-left: 6px;
+  color: #fff;
+  font-size: 1.05rem;
+}
+
+.card {
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+}
+
+.table thead th {
+  background: linear-gradient(90deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+  color: #e6eef8;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.table tbody tr:nth-child(odd) {
+  background: rgba(255,255,255,0.02);
+}
+.table tbody tr:hover {
+  background: rgba(255,255,255,0.04);
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #06b6d4 0%, #7c3aed 100%);
+  border: none;
+  color: #061826;
+}
+.btn-primary:hover {
+  filter: brightness(0.95);
+}
+
+.btn-outline-custom {
+  color: #e6eef8;
+  border-color: rgba(230,238,248,0.12);
+}
+
+a {
+  color: #c7e3ff;
+}
+
+h1, h2, h3, h4 {
+  color: #e6eef8;
+}
+
+.container {
+  max-width: 960px;
+}
+
+.page-title {
+  margin-top: 18px;
+  margin-bottom: 18px;
+  font-weight: 700;
+}
+
+.small-muted {
+  color: rgba(230,238,248,0.65);
+}
