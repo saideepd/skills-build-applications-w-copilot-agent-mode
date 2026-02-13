@@ -20,7 +20,6 @@ def main():
     except SystemExit as e:
         import traceback
         import socket
-        import os
 
         traceback.print_exc()
         print(f"manage.py exited with SystemExit: {e.code}. Check command-line args and settings.")
