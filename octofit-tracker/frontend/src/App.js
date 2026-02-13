@@ -1,5 +1,11 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import { Routes, Route, NavLink } from 'react-router-dom';
+import Activities from './components/Activities';
+import Users from './components/Users';
+import Teams from './components/Teams';
+import Leaderboard from './components/Leaderboard';
+import Workouts from './components/Workouts';
 
 function App() {
   return (
