@@ -25,10 +25,15 @@ export default function Leaderboard() {
   return (
     <div className="container mt-3">
       <div className="card">
+        <div className="card-header d-flex justify-content-between align-items-center">
+          <h2 className="h5 mb-0">Leaderboard</h2>
+          <div>
+            <button className="btn btn-outline-light me-2" onClick={() => window.location.reload()}>Refresh</button>
+          </div>
+        </div>
         <div className="card-body">
-          <h3 className="card-title">Leaderboard</h3>
           <div className="table-responsive">
-            <table className="table table-striped">
+            <table className="table table-striped table-hover align-middle">
               <thead>
                 <tr>
                   <th>#</th>
@@ -39,7 +44,7 @@ export default function Leaderboard() {
               <tbody>
                 {data && data.length ? (
                   data.map((t, i) => (
-                    <tr key={i}>
+                    <tr key={t.id || i}>
                       <td>{i + 1}</td>
                       <td>{t.team}</td>
                       <td>{t.points}</td>

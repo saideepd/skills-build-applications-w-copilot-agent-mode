@@ -25,10 +25,16 @@ export default function Workouts() {
   return (
     <div className="container mt-3">
       <div className="card">
+        <div className="card-header d-flex justify-content-between align-items-center">
+          <h2 className="h5 mb-0">Workouts</h2>
+          <div>
+            <button className="btn btn-outline-light me-2" onClick={() => window.location.reload()}>Refresh</button>
+            <button className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addWorkoutModal">Add</button>
+          </div>
+        </div>
         <div className="card-body">
-          <h3 className="card-title">Workouts</h3>
           <div className="table-responsive">
-            <table className="table table-striped">
+            <table className="table table-striped table-hover align-middle">
               <thead>
                 <tr>
                   <th>#</th>
@@ -40,7 +46,7 @@ export default function Workouts() {
               <tbody>
                 {data && data.length ? (
                   data.map((w, i) => (
-                    <tr key={i}>
+                    <tr key={w.id || i}>
                       <td>{i + 1}</td>
                       <td>{w.user}</td>
                       <td>{w.workout}</td>
@@ -52,6 +58,25 @@ export default function Workouts() {
                 )}
               </tbody>
             </table>
+          </div>
+        </div>
+      </div>
+
+      {/* Add Workout Modal (placeholder) */}
+      <div className="modal fade" id="addWorkoutModal" tabIndex="-1" aria-hidden="true">
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content bg-dark text-light">
+            <div className="modal-header">
+              <h5 className="modal-title">Add Workout</h5>
+              <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div className="modal-body">
+              <p className="small-muted">Form placeholder — implement create API to enable.</p>
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" className="btn btn-primary">Save</button>
+            </div>
           </div>
         </div>
       </div>
